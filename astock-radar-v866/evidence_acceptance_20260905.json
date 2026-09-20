@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-09-05T16:22:53.082845+08:00",
+  "read_only_inputs": true,
+  "actual_profit_validated": false,
+  "out_of_sample_advantage_validated": false,
+  "ai_integration": "NOT_VALIDATED_BY_THIS_AUDIT",
+  "full_trading_session": "REQUIRES_FORWARD_OBSERVATION",
+  "lineage": {
+    "origins": 951,
+    "matched": 951,
+    "source_missing": 0,
+    "source_changed": 0,
+    "invalid_origins": 0,
+    "status": "PASS"
+  },
+  "research_ledger": {
+    "origins": 0,
+    "versions": {},
+    "families": {},
+    "eligible_origin_records": 0,
+    "delivery_status_counts": {},
+    "outcome_rows": 0,
+    "rejected_outcome_rows": 0,
+    "duplicate_outcome_keys": 0,
+    "horizons": {},
+    "status": "INSUFFICIENT_MATURE_DATA",
+    "limitation": "Signals can overlap. Missing horizons are not zero returns. Unmatured and missing-price cases require separate settlement evidence. Delivery totals do not prove next-session end-to-end operation."
+  },
+  "ready_for_performance_claims": false
+}

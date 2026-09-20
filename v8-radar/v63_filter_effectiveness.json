@@ -1,0 +1,19 @@
+{
+  "updated": "2026-08-14 14:56:17",
+  "tracking_events": 0,
+  "evaluated_events": 0,
+  "effective_filter_count": 0,
+  "missed_winner_count": 0,
+  "neutral_count": 0,
+  "effective_filter_rate_pct": 0.0,
+  "missed_winner_rate_pct": 0.0,
+  "avg_max_gain_after_filter_pct": 0.0,
+  "avg_max_drawdown_after_filter_pct": 0.0,
+  "avg_t7_return_pct": 0.0,
+  "by_reason": {},
+  "definitions": {
+    "MISSED_WINNER": "过滤后7个交易日内最高涨幅>=5%",
+    "EFFECTIVE_FILTER": "未达到误杀强票条件，且后续最大回撤<=-3%或T+7收益<=-2%",
+    "NEUTRAL": "其余情况"
+  }
+}

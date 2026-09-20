@@ -1,0 +1,5 @@
+akshare==1.18.81
+requests==2.34.2
+Pillow==12.3.0
+tushare>=1.4.21
+

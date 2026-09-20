@@ -1,0 +1,26 @@
+# /etc/systemd/system/astock-v866-workbench.service
+[Unit]
+Description=AStock V866 Cloud Workbench
+After=network-online.target
+[Service]
+Type=simple
+WorkingDirectory=/opt/astock-radar-v866
+Environment=HOME=/home/ubuntu
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/v8-radar/.venv/bin/python /opt/astock-radar-v866/browser_dashboard_focus.py
+Restart=on-failure
+RestartSec=5
+[Install]
+WantedBy=multi-user.target
+
+# /etc/systemd/system/astock-v866-workbench.service.d/product.conf
+[Service]
+ExecStart=
+ExecStart=/opt/v8-radar/.venv/bin/python /opt/astock-radar-v866/cloud_product_server.py
+
+# /etc/systemd/system/astock-v866-workbench.service.d/zz-fusion2.conf
+[Service]
+WorkingDirectory=/opt/astock-radar-v866/releases/fusion2_20260905_131649
+ExecStart=
+ExecStart=/opt/v8-radar/.venv/bin/python /opt/astock-radar-v866/releases/fusion2_20260905_131649/fusion_service_entry.py
+KillMode=control-group

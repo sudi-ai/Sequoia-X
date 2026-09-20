@@ -1,0 +1,96 @@
+{
+  "status": "DEPLOYED",
+  "backup": "/opt/astock-radar-v866/releases/design3_20260905_142250/rollback/baseline_digest_20260905_160116",
+  "old_service_pid_unchanged": true,
+  "state_file": "fusion_runtime.json",
+  "push_enabled": true,
+  "v8_baseline": {
+    "status": "READ_ONLY_BASELINE_CONNECTED",
+    "source": "/opt/v8-radar/data_v8/signal_lab_v8.sqlite3",
+    "source_rows": 1648,
+    "retained_origins": 951,
+    "newly_imported": 951,
+    "fresh_rows": 0,
+    "original_changes_detected": 0,
+    "checked_at": "2026-09-05T16:01:20.142698+08:00",
+    "execution_eligible": false,
+    "policy": "Old discoveries retained; enhancements parallel; historical imports never replayed as fresh alerts",
+    "limitation": "Polling adds latency; source historical research performance not yet independently audited"
+  },
+  "operations": {
+    "channel": {
+      "configured": true,
+      "dedicated": true,
+      "legacy_fallback": false,
+      "fingerprint": "a04f4f58d93d",
+      "status": "CONFIGURED"
+    },
+    "portfolio": {
+      "status": "PAUSED",
+      "positions": null
+    },
+    "legacy": {
+      "status": "NOT_CONFIGURED",
+      "imported": 0,
+      "policy": "READ_ONLY_NOT_PIT"
+    },
+    "market_digest": {},
+    "close_review": {},
+    "notices": [
+      {
+        "kind": "HISTORICAL_PREVIEW_ONLY",
+        "created_at": "2026-09-05T15:14:10.649976+08:00",
+        "status": "SENT"
+      },
+      {
+        "kind": "HISTORICAL_PREVIEW_ONLY",
+        "created_at": "2026-09-05T15:14:10.447942+08:00",
+        "status": "SENT"
+      },
+      {
+        "kind": "HISTORICAL_PREVIEW_ONLY",
+        "created_at": "2026-09-05T15:14:10.238390+08:00",
+        "status": "SENT"
+      },
+      {
+        "kind": "HISTORICAL_PREVIEW_ONLY",
+        "created_at": "2026-09-05T15:14:10.030860+08:00",
+        "status": "SENT"
+      },
+      {
+        "kind": "HISTORICAL_PREVIEW_ONLY",
+        "created_at": "2026-09-05T15:14:09.823515+08:00",
+        "status": "SENT"
+      },
+      {
+        "kind": "HISTORICAL_PREVIEW_ONLY",
+        "created_at": "2026-09-05T15:14:09.639047+08:00",
+        "status": "SENT"
+      },
+      {
+        "kind": "HISTORICAL_PREVIEW_ONLY",
+        "created_at": "2026-09-05T15:14:09.445963+08:00",
+        "status": "SENT"
+      },
+      {
+        "kind": "HISTORICAL_PREVIEW_ONLY",
+        "created_at": "2026-09-05T15:14:09.018110+08:00",
+        "status": "SENT"
+      },
+      {
+        "kind": "HISTORICAL_PREVIEW_ONLY",
+        "created_at": "2026-09-05T15:14:08.627180+08:00",
+        "status": "SENT"
+      },
+      {
+        "kind": "HISTORICAL_PREVIEW_ONLY",
+        "created_at": "2026-09-05T15:14:08.432255+08:00",
+        "status": "SENT"
+      }
+    ],
+    "schedule": "09:00-09:25 / 15:30-16:30, trading days only",
+    "execution_eligible": false
+  },
+  "http_status": 200,
+  "service_active": "active"
+}

@@ -1,0 +1,19 @@
+[Unit]
+Description=A Stock Opportunity Radar V8 Research Shadow
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/v8-radar
+EnvironmentFile=/etc/v8-radar.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/v8-radar/.venv/bin/python -u /opt/v8-radar/RUN_V8_RESEARCH_SHADOW.py --launch-discovery --portfolio
+Restart=always
+RestartSec=10
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-08-15T03:37:00+00:00",
+  "files": [
+    {
+      "path": "market_radar_V6_6_Pro.py",
+      "sha256": "0368c167b2da26ebae370dd2dd07cb128285547f8cb85cbde86e8e03b1397c3c"
+    },
+    {
+      "path": "v66_adaptive_signal.py",
+      "sha256": "a798633d89100e9278c5ee5fe3c750bd961b7191aeb31ebc11a7ce8dcd9c674d"
+    },
+    {
+      "path": "v66_closed_loop_db.py",
+      "sha256": "dea34ca473bd636ec5e2b0a5d9dcea075ebd77417b4e2edd9122577d08179501"
+    },
+    {
+      "path": "v66_closed_loop_runtime.py",
+      "sha256": "0101fa384e390902f00a78e02f6c03df57df8db83212057d3255db43a375ed64"
+    },
+    {
+      "path": "v66_data_sources.py",
+      "sha256": "ddf02d7c416bbda76c80847a4c070ee506861679230c1893ff2e94d942d675fd"
+    },
+    {
+      "path": "v66_market_sentiment.py",
+      "sha256": "ca52ebb6875776ee9a909627307b4ddab047e44021c9d2993cc1769c4eb40cff"
+    },
+    {
+      "path": "v66_nextday_engine.py",
+      "sha256": "bfc0d0a494054351e0b902709f86811f760c046196489019d9fa1d77bd0a4a8e"
+    },
+    {
+      "path": "v66_regulatory_risk.py",
+      "sha256": "bfcf5255329c3dd27c614e282386b0de3bdacad3cd3d6f8794464ffff9a239ab"
+    },
+    {
+      "path": "v66_sector_cycle.py",
+      "sha256": "7bd6fc216956ca542dde52f3e2fcd16d5cdf4cc3ab0196a51095ae651b511d33"
+    },
+    {
+      "path": "v66_trend_structure.py",
+      "sha256": "8c1911e690f27cd5a942813b185b0c8c063e835c2d5fd13477a8407b1e2c804f"
+    },
+    {
+      "path": "START_RADAR_V6.6_PRO.cmd",
+      "sha256": "65508a96d94e2b15b275d969f4151d3c88738384f9fa1cf3cee8fc891cdc6649"
+    },
+    {
+      "path": "START_RADAR_V6.6_PRO.vbs",
+      "sha256": "8287e3459faaecca25f48218691d6d9d2364f50a28ecc91d585755df4ab902de"
+    }
+  ],
+  "allow_changes": []
+}

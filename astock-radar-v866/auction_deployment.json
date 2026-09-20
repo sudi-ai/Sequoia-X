@@ -1,0 +1,18 @@
+{
+  "tests": 49,
+  "push_enabled": true,
+  "channel": "new_group_only",
+  "auction": {
+    "status": "MARKET_CLOSED",
+    "source": "stk_auction",
+    "execution_eligible": false,
+    "baseline_status": "PREPARING_SAME_INTERFACE_HISTORY"
+  },
+  "probe": {
+    "requested_date": "20260904",
+    "status": "OK",
+    "raw_rows": 5535,
+    "valid_rows": 5481,
+    "historical_probe_only": true
+  }
+}

@@ -1,0 +1,102 @@
+NEWS_TITLE_PUSH=False
+import datetime as dt, email.utils, hashlib, json, math, sqlite3, time, xml.etree.ElementTree as ET
+from pathlib import Path
+from urllib.parse import urlparse
+TZ=dt.timezone(dt.timedelta(hours=8))
+FEED='https://www.chinanews.com.cn/rss/finance.xml'
+def stamp(v):
+ try:
+  v=dt.datetime.fromisoformat(str(v)); return v if v.tzinfo else None
+ except (ValueError,TypeError): return None
+def read_json(p):
+ try: return json.loads(p.read_text(encoding='utf-8'))
+ except (OSError,ValueError): return {}
+def write_json(p,v):
+ t=p.with_suffix('.tmp');t.write_text(json.dumps(v,ensure_ascii=False),encoding='utf-8');t.replace(p)
+def parse_news(raw,now):
+ if len(raw)>1048576 or b'<!ENTITY' in raw.upper() or b'<!DOCTYPE' in raw.upper(): raise ValueError('UNSAFE_FEED')
+ items=[]
+ for x in ET.fromstring(raw).findall('./channel/item'):
+  title=' '.join((x.findtext('title') or '').split())[:160];link=(x.findtext('link') or '').strip();host=urlparse(link).hostname or ''
+  if not title or urlparse(link).scheme not in ('http','https') or not (host=='chinanews.com.cn' or host.endswith('.chinanews.com.cn')):continue
+  try:
+   at=email.utils.parsedate_to_datetime(x.findtext('pubDate') or '')
+   if not at.tzinfo or not 0<=(now-at).total_seconds()<=86400:continue
+  except (TypeError,ValueError):continue
+  items.append(dict(id=hashlib.sha256(link.encode()).hexdigest(),title=title,url=link,published_at=at.astimezone(TZ).isoformat(),source='中国新闻网'))
+ return sorted(items,key=lambda x:x['published_at'],reverse=True)
+def portfolio_text(s,now,label):
+ lines=['A股机会雷达 新版｜持仓汇总 '+label,'生成：'+now.strftime('%m-%d %H:%M')+' 北京时间','配置持仓，未经券商账户核验；不是成交或操作指令。','行情快照：'+str(s.get('asof','无有效快照'))]
+ for r in s.get('items',[])[:20]:
+  name=str(r.get('name') or r.get('ts_code') or '未知')[:12];p=r.get('price');v=r.get('pnl_pct')
+  change=('%+.2f%%'%v) if isinstance(v,(int,float)) and math.isfinite(v) else '盈亏未知'
+  stage={'NORMAL':'未触发价格线','STOP_REVIEW':'触及止损线，需复核','TARGET_REVIEW':'触及目标线，需复核','WAIT_DATA':'行情缺失'}.get(r.get('stage'),'状态未知')
+  lines.append(name+' '+(str(p) if isinstance(p,(int,float)) and math.isfinite(p) else '价格未知')+' / '+change+' / '+stage)
+ if not s.get('items'):lines.append('尚无今天的有效持仓行情，不能据此判断持仓正常。')
+ lines.append('数量及可卖余额以券商为准；盈亏仅相对配置成本。');return '\n'.join(lines)
+class Worker:
+ def __init__(self,root,sender,fetch=None):
+  self.root=Path(root);self.root.mkdir(parents=True,exist_ok=True);self.sender=sender;self.fetch=fetch or self.download
+  self.db=sqlite3.connect(self.root/'fusion_daily_news.sqlite3',timeout=5)
+  self.db.executescript('CREATE TABLE IF NOT EXISTS notices(id TEXT PRIMARY KEY,kind TEXT,created_at TEXT,status TEXT,content TEXT); CREATE TABLE IF NOT EXISTS seen(id TEXT PRIMARY KEY,at TEXT); CREATE TABLE IF NOT EXISTS state(id TEXT PRIMARY KEY,value TEXT);')
+  with self.db:self.db.execute("UPDATE notices SET status='UNCERTAIN' WHERE status='SENDING'")
+ @staticmethod
+ def download():
+  import requests
+  with requests.get(FEED,timeout=(5,15),stream=True) as r:
+   r.raise_for_status();b=bytearray()
+   for chunk in r.iter_content(16384):
+    b.extend(chunk)
+    if len(b)>1048576:raise ValueError('FEED_TOO_LARGE')
+   return bytes(b)
+ def get(self,k,default=None):
+  r=self.db.execute('SELECT value FROM state WHERE id=?',(k,)).fetchone();return json.loads(r[0]) if r else default
+ def put(self,k,v):
+  with self.db:self.db.execute('INSERT OR REPLACE INTO state VALUES (?,?)',(k,json.dumps(v)))
+ def send(self,i,k,text,now):
+  if len(text.encode())>1750:text=text.encode()[:1690].decode(errors='ignore')+'\n更多见本地通知记录。'
+  with self.db:n=self.db.execute('INSERT OR IGNORE INTO notices VALUES (?,?,?,?,?)',(i,k,now.isoformat(),'SENDING',text)).rowcount
+  if not n:return 'DUPLICATE'
+  try:
+   status=self.sender(text).get('status','UNCERTAIN')
+   if status not in ('SENT','FAILED','UNCERTAIN'):status='UNCERTAIN'
+  except Exception:status='UNCERTAIN'
+  with self.db:self.db.execute('UPDATE notices SET status=? WHERE id=?',(status,i))
+  return status
+ def tick(self,now):
+  rt=read_json(self.root/'fusion_runtime.json');at=stamp(rt.get('generated_at'));fresh=bool(at and 0<=(now-at).total_seconds()<=180)
+  p=rt.get('operations',{}).get('portfolio',{});day=now.date().isoformat();minute=now.hour*60+now.minute
+  if fresh and rt.get('status')=='RESEARCH_ONLY':self.put('trade_day',day);self.put('portfolio',dict(items=p.get('items',[]),asof=at.isoformat()))
+  if self.get('trade_day')==day:
+   for label,start,end in [('盘中',600,630),('收盘',935,990)]:
+    if start<=minute<end:self.send(day+':PORTFOLIO:'+label,'PORTFOLIO_SUMMARY',portfolio_text(self.get('portfolio',{}),now,label),now)
+  status=self.get('news_status',{});last=stamp(self.get('last_poll'))
+  if last is None or (now-last).total_seconds()>=300:
+   self.put('last_poll',now.isoformat())
+   try:
+    items=parse_news(self.fetch(),now);write_json(self.root/'fusion_news.json',dict(checked_at=now.isoformat(),source=FEED,items=items,status='READY' if items else 'NO_FRESH_ITEMS'))
+    unseen=[x for x in items if not self.db.execute('SELECT 1 FROM seen WHERE id=?',(x['id'],)).fetchone()]
+    recent=[x for x in unseen if (now-stamp(x['published_at'])).total_seconds()<=3600];lastsend=stamp(self.get('last_news_send'));ready=lastsend is None or (now-lastsend).total_seconds()>=900;result='NO_NEW_ITEMS'
+    if NEWS_TITLE_PUSH and recent and ready and 480<=minute<1200:
+     selected=recent[:3];text='A股机会雷达 新版｜财经新闻\n来源：中国新闻网；标题摘录，不代表交易信号。\n'+'\n\n'.join(x['published_at'][11:16]+' '+x['title']+'\n'+x['url'] for x in selected)+'\n本轮新鲜新闻 '+str(len(recent))+' 条，展示最新 '+str(len(selected))+' 条。'
+     key=hashlib.sha256('|'.join(x['id'] for x in selected).encode()).hexdigest();result=self.send('NEWS:'+key,'REALTIME_NEWS',text,now);self.put('last_news_send',now.isoformat())
+     with self.db:self.db.executemany('INSERT OR IGNORE INTO seen VALUES (?,?)',[(x['id'],now.isoformat()) for x in unseen])
+    status=dict(status='READY' if items else 'NO_FRESH_ITEMS',count=len(items),checked_at=now.isoformat(),delivery=result)
+   except Exception as e:status=dict(status='FETCH_FAILED',error=type(e).__name__,checked_at=now.isoformat())
+   self.put('news_status',status)
+  if self.get('cleanup_day')!=day:
+   with self.db:
+    cutoff=(now-dt.timedelta(days=30)).isoformat();self.db.execute('DELETE FROM seen WHERE at<?',(cutoff,));self.db.execute('DELETE FROM notices WHERE created_at<?',(cutoff,))
+   self.put('cleanup_day',day)
+  write_json(self.root/'fusion_daily_news_status.json',dict(checked_at=now.isoformat(),runtime_fresh=fresh,news=status,portfolio_day=self.get('trade_day'),schedule='交易日10:00及15:35；新闻5分钟采集、最多15分钟一组',notices=self.db.execute('SELECT kind,created_at,status FROM notices ORDER BY created_at DESC LIMIT 8').fetchall()))
+def main():
+ import argparse,fcntl
+ from fusion_wecom import send_text
+ p=argparse.ArgumentParser();p.add_argument('--data',required=True);args=p.parse_args();root=Path(args.data)
+ with (root/'fusion_daily_news.lock').open('w') as lock:
+  fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);w=Worker(root,send_text)
+  while True:
+   try:w.tick(dt.datetime.now(TZ))
+   except Exception as e:print('TICK_FAILED',type(e).__name__,flush=True)
+   time.sleep(30)
+if __name__=='__main__':main()

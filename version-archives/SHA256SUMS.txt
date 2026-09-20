@@ -1,0 +1,2 @@
+6cd649122d1cf09f83adfc1cd1c6e69de03e3f7ff77d5dae674c83c72f2c5f37  /opt/astock-radar-v866/releases/dual-version-repository_20260920/v8-radar/v8-radar-source.tar.gz
+582e1b56ebe4b517f3829243c66c03d4df300631ae04163823484933421ebda3  /opt/astock-radar-v866/releases/dual-version-repository_20260920/astock-radar-v866-design3/astock-radar-v866-design3-source.tar.gz

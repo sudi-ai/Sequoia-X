@@ -1,0 +1,1 @@
+{"trade_date": "2026-08-26", "total_movers": 200, "discovered": 45, "recall_pct": 22.5, "groups": {"NOT_DISCOVERED": 155, "BLOCKED": 15, "WATCH": 27, "CONFIRMED": 3}, "status": "SETTLED", "snapshot_rows": 5549, "strong_pool_size": 200, "selection": "TOP100_PLUS_CLOSE4_OR_MAX6"}

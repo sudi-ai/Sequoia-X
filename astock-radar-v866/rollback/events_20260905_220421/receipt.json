@@ -1,0 +1,17 @@
+{
+  "deployed": true,
+  "backup": "/opt/astock-radar-v866/releases/design3_20260905_142250/rollback/events_20260905_220421",
+  "files": [
+    "fusion_event_calendar.py",
+    "fusion_event_radar.py",
+    "fusion_event_workspace.py",
+    "fusion_runtime_v2.py",
+    "fusion_workspace_v2.py",
+    "test_fusion_event_radar.py",
+    "FUSION_EVENT_RADAR.md"
+  ],
+  "http_panel": true,
+  "legacy_pid_unchanged": true,
+  "market_session_verified": false,
+  "group_delivery_verified": false
+}

@@ -1,0 +1,24 @@
+{
+  "002837": {
+    "high": 57.09,
+    "low": 56.04,
+    "behavior": "UNCERTAIN",
+    "prev": 57.09,
+    "wash": 42,
+    "down": 30,
+    "trap": 10,
+    "distribution": 10,
+    "updated": "2026-08-14 15:01:08"
+  },
+  "002155": {
+    "high": 24.65,
+    "low": 24.36,
+    "behavior": "WASH",
+    "prev": 24.65,
+    "wash": 69,
+    "down": 20,
+    "trap": 10,
+    "distribution": 10,
+    "updated": "2026-08-14 15:01:09"
+  }
+}

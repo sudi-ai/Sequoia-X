@@ -1,0 +1,17 @@
+{
+  "updated": "2026-08-14 15:00:53",
+  "sample": 4926,
+  "limit_up": 68,
+  "limit_down": 20,
+  "up_count": 2010,
+  "down_count": 2756,
+  "score_partial": 52.7,
+  "state_partial": "谨慎",
+  "score_formula": "上涨家数占比70%+涨跌停平衡30%",
+  "data_complete": false,
+  "missing": [
+    "炸板率",
+    "连板高度",
+    "晋级率"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "release": "/opt/astock-radar-v866/releases/design3_20260905_142250",
+  "http_status": 200,
+  "port": 8791,
+  "worker_status": "MARKET_CLOSED",
+  "worker_generated_at": "2026-09-05T14:31:38.547272+08:00",
+  "push_enabled": false,
+  "execution_eligible": false,
+  "rollback": "/opt/astock-radar-v866/releases/design3_20260905_142250/rollback/rollback.sh",
+  "tests_passed": 41
+}

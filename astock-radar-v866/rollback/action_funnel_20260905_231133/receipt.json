@@ -1,0 +1,18 @@
+{
+  "deployed": true,
+  "version": "ACTION_FUNNEL_1",
+  "backup": "/opt/astock-radar-v866/releases/design3_20260905_142250/rollback/action_funnel_20260905_231133",
+  "files": [
+    "fusion_operations.py",
+    "fusion_workspace_v2.py",
+    "fusion_runtime_v2.py",
+    "fusion_action_center.py",
+    "test_fusion_action_center.py",
+    "fusion_action_workspace.py"
+  ],
+  "tests": 140,
+  "http_panel": true,
+  "legacy_pid_unchanged": true,
+  "live_market_verified": false,
+  "positions_configured": false
+}

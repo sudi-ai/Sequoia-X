@@ -1,0 +1,443 @@
+{
+  "checked_at": "2026-08-18T12:10:32+08:00",
+  "live_root": "E:\\A股机会雷达_V8_Research_Shadow_明日验证版",
+  "token_configured": true,
+  "relay_configured": true,
+  "probe_policy": "one_call_per_endpoint_small_sample",
+  "results": [
+    {
+      "api": "index_basic",
+      "label": "指数基础",
+      "status": "AVAILABLE",
+      "row_count": 5,
+      "latency_ms": 2786.6,
+      "columns": [
+        "ts_code",
+        "name",
+        "market",
+        "publisher",
+        "category",
+        "base_date",
+        "base_point",
+        "list_date"
+      ],
+      "error": ""
+    },
+    {
+      "api": "stock_basic",
+      "label": "股票基础",
+      "status": "AVAILABLE",
+      "row_count": 5,
+      "latency_ms": 2114.3,
+      "columns": [
+        "ts_code",
+        "symbol",
+        "name",
+        "area",
+        "industry",
+        "cnspell",
+        "market",
+        "list_date",
+        "act_name",
+        "act_ent_type"
+      ],
+      "error": ""
+    },
+    {
+      "api": "stock_company",
+      "label": "公司资料",
+      "status": "AVAILABLE",
+      "row_count": 5,
+      "latency_ms": 2373.5,
+      "columns": [
+        "ts_code",
+        "com_name",
+        "com_id",
+        "chairman",
+        "manager",
+        "secretary",
+        "reg_capital",
+        "setup_date",
+        "province",
+        "city",
+        "introduction",
+        "website",
+        "email",
+        "office",
+        "business_scope",
+        "employees",
+        "main_business",
+        "exchange"
+      ],
+      "error": ""
+    },
+    {
+      "api": "trade_cal",
+      "label": "交易日历",
+      "status": "AVAILABLE",
+      "row_count": 31,
+      "latency_ms": 2318.4,
+      "columns": [
+        "exchange",
+        "cal_date",
+        "is_open",
+        "pretrade_date"
+      ],
+      "error": ""
+    },
+    {
+      "api": "daily",
+      "label": "历史日线",
+      "status": "AVAILABLE",
+      "row_count": 21,
+      "latency_ms": 2383.3,
+      "columns": [
+        "ts_code",
+        "trade_date",
+        "open",
+        "high",
+        "low",
+        "close",
+        "pre_close",
+        "change",
+        "pct_chg",
+        "vol",
+        "amount"
+      ],
+      "error": ""
+    },
+    {
+      "api": "daily_basic",
+      "label": "每日估值指标",
+      "status": "AVAILABLE",
+      "row_count": 21,
+      "latency_ms": 4591.4,
+      "columns": [
+        "ts_code",
+        "trade_date",
+        "close",
+        "turnover_rate",
+        "turnover_rate_f",
+        "volume_ratio",
+        "pe",
+        "pe_ttm",
+        "pb",
+        "ps",
+        "ps_ttm",
+        "dv_ratio",
+        "dv_ttm",
+        "total_share",
+        "float_share",
+        "free_share",
+        "total_mv",
+        "circ_mv"
+      ],
+      "error": ""
+    },
+    {
+      "api": "moneyflow",
+      "label": "个股资金流",
+      "status": "AVAILABLE",
+      "row_count": 21,
+      "latency_ms": 2044.4,
+      "columns": [
+        "trade_date",
+        "ts_code",
+        "buy_elg_amount",
+        "buy_elg_vol",
+        "buy_lg_amount",
+        "buy_lg_vol",
+        "buy_md_amount",
+        "buy_md_vol",
+        "buy_sm_amount",
+        "buy_sm_vol",
+        "net_mf_amount",
+        "net_mf_vol",
+        "sell_elg_amount",
+        "sell_elg_vol",
+        "sell_lg_amount",
+        "sell_lg_vol",
+        "sell_md_amount",
+        "sell_md_vol",
+        "sell_sm_amount",
+        "sell_sm_vol"
+      ],
+      "error": ""
+    },
+    {
+      "api": "forecast",
+      "label": "业绩预告",
+      "status": "AVAILABLE_EMPTY",
+      "row_count": 0,
+      "latency_ms": 3063.4,
+      "columns": [],
+      "error": ""
+    },
+    {
+      "api": "rt_k",
+      "label": "实时日线",
+      "status": "AVAILABLE",
+      "row_count": 1,
+      "latency_ms": 3286.4,
+      "columns": [
+        "ts_code",
+        "name",
+        "pre_close",
+        "high",
+        "open",
+        "low",
+        "close",
+        "vol",
+        "amount"
+      ],
+      "error": ""
+    },
+    {
+      "api": "rt_min",
+      "label": "实时分钟",
+      "status": "AVAILABLE",
+      "row_count": 121,
+      "latency_ms": 3756.8,
+      "columns": [
+        "ts_code",
+        "time",
+        "open",
+        "close",
+        "high",
+        "low",
+        "vol",
+        "amount"
+      ],
+      "error": ""
+    },
+    {
+      "api": "rt_min_daily",
+      "label": "当日实时分钟",
+      "status": "AVAILABLE",
+      "row_count": 121,
+      "latency_ms": 2756.5,
+      "columns": [
+        "ts_code",
+        "time",
+        "open",
+        "close",
+        "high",
+        "low",
+        "vol",
+        "amount"
+      ],
+      "error": ""
+    },
+    {
+      "api": "anns_d",
+      "label": "公告",
+      "status": "AVAILABLE",
+      "row_count": 9,
+      "latency_ms": 1957.5,
+      "columns": [
+        "ann_date",
+        "ts_code",
+        "name",
+        "title",
+        "url"
+      ],
+      "error": ""
+    },
+    {
+      "api": "news",
+      "label": "新闻快讯",
+      "status": "AVAILABLE",
+      "row_count": 421,
+      "latency_ms": 3164.3,
+      "columns": [
+        "datetime",
+        "content",
+        "title"
+      ],
+      "error": ""
+    },
+    {
+      "api": "major_news",
+      "label": "重大新闻",
+      "status": "AVAILABLE_EMPTY",
+      "row_count": 0,
+      "latency_ms": 2489.7,
+      "columns": [],
+      "error": ""
+    },
+    {
+      "api": "report_rc",
+      "label": "研报",
+      "status": "AVAILABLE",
+      "row_count": 314,
+      "latency_ms": 2560.9,
+      "columns": [
+        "ts_code",
+        "name",
+        "report_date",
+        "report_title",
+        "report_type",
+        "classify",
+        "org_name",
+        "author_name",
+        "quarter",
+        "op_rt",
+        "op_pr",
+        "tp",
+        "np",
+        "eps",
+        "pe",
+        "rd",
+        "roe",
+        "ev_ebitda",
+        "rating",
+        "max_price",
+        "min_price"
+      ],
+      "error": ""
+    },
+    {
+      "api": "cyq_perf",
+      "label": "筹码成本",
+      "status": "AVAILABLE",
+      "row_count": 21,
+      "latency_ms": 2307.1,
+      "columns": [
+        "trade_date",
+        "ts_code",
+        "cost_15pct",
+        "cost_50pct",
+        "cost_5pct",
+        "cost_85pct",
+        "cost_95pct",
+        "his_high",
+        "his_low",
+        "weight_avg",
+        "winner_rate"
+      ],
+      "error": ""
+    },
+    {
+      "api": "cyq_chips",
+      "label": "筹码分布",
+      "status": "AVAILABLE",
+      "row_count": 2184,
+      "latency_ms": 4445.5,
+      "columns": [
+        "ts_code",
+        "trade_date",
+        "price",
+        "percent"
+      ],
+      "error": ""
+    },
+    {
+      "api": "stk_auction_o",
+      "label": "竞价汇总",
+      "status": "AVAILABLE",
+      "row_count": 1,
+      "latency_ms": 2122.9,
+      "columns": [
+        "ts_code",
+        "trade_date",
+        "close",
+        "open",
+        "high",
+        "low",
+        "vol",
+        "amount",
+        "vwap"
+      ],
+      "error": ""
+    },
+    {
+      "api": "stk_auction_tick",
+      "label": "竞价过程",
+      "status": "AVAILABLE",
+      "row_count": 349,
+      "latency_ms": 2835.0,
+      "columns": [
+        "ts_code",
+        "trade_time",
+        "price",
+        "volume",
+        "amount",
+        "ts_ms"
+      ],
+      "error": ""
+    },
+    {
+      "api": "us_tbr",
+      "label": "美国国债利率",
+      "status": "AVAILABLE",
+      "row_count": 20,
+      "latency_ms": 3651.1,
+      "columns": [
+        "date",
+        "w4_bd",
+        "w4_ce",
+        "w8_bd",
+        "w8_ce",
+        "w13_bd",
+        "w13_ce",
+        "w26_bd",
+        "w26_ce",
+        "w52_bd",
+        "w52_ce"
+      ],
+      "error": ""
+    },
+    {
+      "api": "index_member_all",
+      "label": "行业成分",
+      "status": "AVAILABLE",
+      "row_count": 1,
+      "latency_ms": 2350.6,
+      "columns": [
+        "l1_code",
+        "l1_name",
+        "l2_code",
+        "l2_name",
+        "l3_code",
+        "l3_name",
+        "ts_code",
+        "name",
+        "in_date",
+        "out_date",
+        "is_new"
+      ],
+      "error": ""
+    },
+    {
+      "api": "fina_mainbz",
+      "label": "主营构成",
+      "status": "AVAILABLE_EMPTY",
+      "row_count": 0,
+      "latency_ms": 2833.8,
+      "columns": [],
+      "error": ""
+    },
+    {
+      "api": "pro_bar",
+      "label": "历史1分钟",
+      "status": "AVAILABLE",
+      "row_count": 1205,
+      "latency_ms": 4339.1,
+      "columns": [
+        "ts_code",
+        "trade_time",
+        "open",
+        "close",
+        "high",
+        "low",
+        "vol",
+        "amount",
+        "trade_date",
+        "pre_close",
+        "change",
+        "pct_chg"
+      ],
+      "error": ""
+    }
+  ]
+}

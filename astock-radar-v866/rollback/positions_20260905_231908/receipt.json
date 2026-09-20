@@ -1,0 +1,14 @@
+{
+  "deployed": true,
+  "positions": 10,
+  "shares": 1300,
+  "files": [
+    "fusion_operations.py",
+    "fusion_action_workspace.py",
+    "fusion_runtime_v2.py"
+  ],
+  "backup": "/opt/astock-radar-v866/releases/design3_20260905_142250/rollback/positions_20260905_231908",
+  "legacy_pid_unchanged": true,
+  "live_market_verified": false,
+  "stops_configured": false
+}
